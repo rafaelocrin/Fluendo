@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
 
-namespace Fluendo.FluendoPlatform.Core.WebApi
+namespace Fluendo.FluendoPlatform.StatsService.WebApi
 {
     public class Startup
     {
@@ -31,8 +31,8 @@ namespace Fluendo.FluendoPlatform.Core.WebApi
                 c.SwaggerDoc("v1", new Info
                 {
                     Version = "v1",
-                    Title = "Fluendo Core WebApi",
-                    Description = "Fluendo Core WebApi"
+                    Title = "Fluendo StatsService WebApi",
+                    Description = "Fluendo Stats Updater Service WebApi"
                 });
             });
         }
@@ -50,7 +50,7 @@ namespace Fluendo.FluendoPlatform.Core.WebApi
             app.UseSwagger();
 
             app.UseSwaggerUI(c => {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Fluendo Core WebApi V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Fluendo StatsService WebApi V1");
             });
         }
     }

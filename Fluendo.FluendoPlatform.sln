@@ -7,6 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluendo.FluendoPlatform.Cor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluendo.FluendoPlatform.Core.App", "Fluendo.FluendoPlatform.Core.App\Fluendo.FluendoPlatform.Core.App.csproj", "{CCAE4A50-A974-4012-B8BC-F4DBECCB90BC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Fluendo.FluendoPlatform.Core", "Fluendo.FluendoPlatform.Core", "{05988B77-7F75-413D-9421-9C0BF5FB60F0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Fluendo.FluendoPlatform.StatsService", "Fluendo.FluendoPlatform.StatsService", "{943C1D49-B4EC-426F-8C9B-8411B289B6F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluendo.FluendoPlatform.StatsService.WebApi", "Fluendo.FluendoPlatform.StatsService.WebApi\Fluendo.FluendoPlatform.StatsService.WebApi.csproj", "{0CEFE724-BF3E-4CB6-9AB1-5C872A0FD91C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +27,18 @@ Global
 		{CCAE4A50-A974-4012-B8BC-F4DBECCB90BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCAE4A50-A974-4012-B8BC-F4DBECCB90BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCAE4A50-A974-4012-B8BC-F4DBECCB90BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CEFE724-BF3E-4CB6-9AB1-5C872A0FD91C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CEFE724-BF3E-4CB6-9AB1-5C872A0FD91C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CEFE724-BF3E-4CB6-9AB1-5C872A0FD91C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CEFE724-BF3E-4CB6-9AB1-5C872A0FD91C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C52FA58B-09A5-4BD8-8643-41F020AD9482} = {05988B77-7F75-413D-9421-9C0BF5FB60F0}
+		{CCAE4A50-A974-4012-B8BC-F4DBECCB90BC} = {05988B77-7F75-413D-9421-9C0BF5FB60F0}
+		{0CEFE724-BF3E-4CB6-9AB1-5C872A0FD91C} = {943C1D49-B4EC-426F-8C9B-8411B289B6F0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A2599970-42C4-46CB-B09A-3B377F651AAE}
