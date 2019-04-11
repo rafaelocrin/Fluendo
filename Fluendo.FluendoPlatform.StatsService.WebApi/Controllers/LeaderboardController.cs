@@ -32,11 +32,17 @@ namespace Fluendo.FluendoPlatform.StatsService.WebApi.Controllers
                 if (!result.IsSuccessStatusCode)
                     throw new HttpRequestException($"Error in request to {uri} : {result.StatusCode}");
 
-                var ret = JsonConvert.DeserializeObject<object>(result.Content.ReadAsStringAsync().Result);
+                var leaderboardResult = JsonConvert.DeserializeObject<object>(result.Content.ReadAsStringAsync().Result);
 
+                // Update to mongoDB
 
-                return ret;
+                var leaderboardDal = new LeaderboardDal();
+                leaderboardDal.Update(leaderboardResult.ToString());
+
+                return leaderboardResult;
             }
         }
+
+
     }
 }
