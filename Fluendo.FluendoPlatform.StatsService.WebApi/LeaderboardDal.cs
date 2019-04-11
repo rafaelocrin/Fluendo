@@ -11,16 +11,28 @@ namespace Fluendo.FluendoPlatform.StatsService.WebApi
     {
         public void Update(string leaderboardTopList)
         {
-            var connectionString = "mongodb://localhost";
-            var client = new MongoClient(connectionString);
-            var database = client.GetDatabase("local");
-            var leaderboardCol = database.GetCollection<BsonDocument>("Leaderboard");
+            MongoClient client;
+
+            try
+            {
+                var connectionString = "mongodb://localhost";
+                client = new MongoClient(connectionString);
+                var database = client.GetDatabase("local");
+                var leaderboardCol = database.GetCollection<BsonDocument>("Leaderboard");
 
 
-            BsonDocument personDoc = new BsonDocument();
-            MongoDB.Bson.BsonDocument leaderboardTopListDoc = MongoDB.Bson.Serialization.BsonSerializer.Deserialize<BsonDocument>(leaderboardTopList);
+                BsonDocument personDoc = new BsonDocument();
+                MongoDB.Bson.BsonDocument leaderboardTopListDoc = MongoDB.Bson.Serialization.BsonSerializer.Deserialize<BsonDocument>(leaderboardTopList);
 
-            leaderboardCol.InsertOne(leaderboardTopListDoc);
+                leaderboardCol.InsertOne(leaderboardTopListDoc);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error when trying to udpate into Leaderboard collection");
+            }
+            finally{
+                // TODO: Dispose
+            }
         }
     }
 }
