@@ -10,15 +10,16 @@ namespace Fluendo.FluendoPlatform.Core.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LeaderboardController : ControllerBase
+    public class PlayerController : ControllerBase
     {
-        // GET api/leaderboard/test
-        [HttpGet("{gamemode}")]
-        public async Task<ActionResult<string>> GetAsync(string gamemode)
+        // accountId: account.d50fdc18fcad49c691d38466bed6f8fd
+        // GET api/player/{accountId}/seasons/lifetime"
+        [HttpGet("stats/{accountId}")]
+        public async Task<ActionResult<string>> GetAsync(string accountId)
         {
             var client = HttpClientFactory.Create();
 
-            var uri = new Uri($"http://localhost:51433/api/leaderboard/{gamemode}");
+            var uri = new Uri($"http://localhost:51433/api/player/{accountId}/seasons/lifetime");
 
             using (var result = await client.GetAsync(uri))
             {
