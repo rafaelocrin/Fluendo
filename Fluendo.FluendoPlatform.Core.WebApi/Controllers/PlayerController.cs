@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Fluendo.FluendoPlatform.Infrastructure.Common;
+using Fluendo.FluendoPlatform.Infrastructure.Common.Config;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
 namespace Fluendo.FluendoPlatform.Core.WebApi.Controllers
@@ -12,25 +15,24 @@ namespace Fluendo.FluendoPlatform.Core.WebApi.Controllers
     [ApiController]
     public class PlayerController : ControllerBase
     {
-        // accountId: account.d50fdc18fcad49c691d38466bed6f8fd
-        // GET api/player/{accountId}/seasons/lifetime"
-        [HttpGet("stats/{accountId}")]
-        public async Task<ActionResult<string>> GetAsync(string accountId)
+        protected readonly IHttpUtility _httpUtility;
+        protected readonly IOptions<ApplicationOptions> _appOptions;
+
+        public PlayerController(IOptions<ApplicationOptions> appOptions, IHttpUtility httpUtility)
         {
-            var client = HttpClientFactory.Create();
+            _httpUtility = httpUtility;
+            _appOptions = appOptions;
+        }
 
-            var uri = new Uri($"http://localhost:51433/api/player/{accountId}/seasons/lifetime");
+        // GET api/player/{accountId}/seasons/lifetime"
+        [HttpGet("{accountId}/seasons/lifetime")]
+        public async Task<ActionResult<object>> GetAsync(string accountId)
+        {
+            var uri = new Uri(string.Format(_appOptions.Value.Endpoints["Core_PlayerLifetime"], accountId));
 
-            using (var result = await client.GetAsync(uri))
-            {
-                if (!result.IsSuccessStatusCode)
-                    throw new HttpRequestException($"Error in request to {uri} : {result.StatusCode}");
+            var result = await _httpUtility.GetAsync(uri);
 
-                var ret = JsonConvert.DeserializeObject<string>(result.Content.ReadAsStringAsync().Result);
-                
-
-                return ret;
-            }
+            return result;
         }
     }
 }

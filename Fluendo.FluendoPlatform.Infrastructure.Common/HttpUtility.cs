@@ -12,11 +12,10 @@ namespace Fluendo.FluendoPlatform.Infrastructure.Common
     {
         protected readonly IHttpClientFactory _httpClientFactory;
 
-        public HttpUtility(IHttpClientFactory htppClientFactory)
+        public HttpUtility(IHttpClientFactory httpClientFactory)
         {
-            _httpClientFactory = htppClientFactory;
+            _httpClientFactory = httpClientFactory;
         }
-
 
         public async Task<object> GetAsync(Uri uri)
         {
@@ -81,45 +80,5 @@ namespace Fluendo.FluendoPlatform.Infrastructure.Common
                 return JsonConvert.DeserializeObject<object>(result.Content.ReadAsStringAsync().Result);
             }
         }
-
-        //public async Task<ResultRequest<T>> GetAsync(string uri)
-        //{
-        //    var resulRequest = new ResultRequest<T>();
-
-        //    try
-        //    {
-        //        var client = _httpClientFactory.CreateClient();
-
-        //        using (var result = await client.GetAsync(uri))
-        //        {
-        //            if (!result.IsSuccessStatusCode)
-        //            {
-        //                //if (resulRequest.Error == null)
-        //                //{
-        //                //    resulRequest.Error = new Error
-        //                //    {
-        //                //        ErrorCode = result.StatusCode.ToString()
-        //                //    };
-        //                //}
-        //                //else
-        //                //{
-        //                    resulRequest.Error?.ErrorCode = result.StatusCode.ToString();
-        //                //}
-        //            }
-        //                //throw new HttpRequestException($"Error in request to {uri} : {result.StatusCode}");
-
-        //            //var ret = JsonConvert.DeserializeObject<string>(result.Content.ReadAsStringAsync().Result);
-
-
-
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //    }
-
-        //    return resulRequest;
-        //}
     }
 }

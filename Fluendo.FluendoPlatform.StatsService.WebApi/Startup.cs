@@ -12,6 +12,7 @@ using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
 using Autofac;
 using Autofac.Configuration;
+using Fluendo.FluendoPlatform.Infrastructure.Common.Config;
 
 namespace Fluendo.FluendoPlatform.StatsService.WebApi
 {
@@ -30,6 +31,8 @@ namespace Fluendo.FluendoPlatform.StatsService.WebApi
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddHttpClient();
+
+            services.Configure<ApplicationOptions>(Configuration.GetSection("ApplicationOptions"));
 
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new Info

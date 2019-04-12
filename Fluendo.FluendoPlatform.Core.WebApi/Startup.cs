@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Autofac;
 using Autofac.Configuration;
 using Autofac.Extensions.DependencyInjection;
+using Fluendo.FluendoPlatform.Infrastructure.Common.Config;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -29,7 +30,11 @@ namespace Fluendo.FluendoPlatform.Core.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
             services.AddHttpClient();
+
+            services.Configure<ApplicationOptions>(Configuration.GetSection("ApplicationOptions"));
+
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new Info
                 {
