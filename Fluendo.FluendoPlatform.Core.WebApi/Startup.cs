@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Autofac;
+using Autofac.Configuration;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -26,7 +29,7 @@ namespace Fluendo.FluendoPlatform.Core.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
+            services.AddHttpClient();
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new Info
                 {
@@ -48,10 +51,17 @@ namespace Fluendo.FluendoPlatform.Core.WebApi
             app.UseMvc();
 
             app.UseSwagger();
+            
 
             app.UseSwaggerUI(c => {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Fluendo Core WebApi V1");
             });
         }
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterModule(new ConfigurationModule(Configuration));
+        }
+
     }
 }

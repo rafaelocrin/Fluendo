@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace Fluendo.FluendoPlatform.Infrastructure.Common
 {
-    public interface IHttpUtility<T>
+    public interface IHttpUtility
     {
-        Task<T> GetAsync(string uri);
+        Task<object> GetAsync(Uri uri);
+        Task<object> GetAsync(Uri uri, string authorizationKey);
     }
 }

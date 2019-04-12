@@ -5,13 +5,17 @@ VisualStudioVersion = 15.0.28307.539
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluendo.FluendoPlatform.Core.WebApi", "Fluendo.FluendoPlatform.Core.WebApi\Fluendo.FluendoPlatform.Core.WebApi.csproj", "{C52FA58B-09A5-4BD8-8643-41F020AD9482}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluendo.FluendoPlatform.Core.App", "Fluendo.FluendoPlatform.Core.App\Fluendo.FluendoPlatform.Core.App.csproj", "{CCAE4A50-A974-4012-B8BC-F4DBECCB90BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluendo.FluendoPlatform.Core.App", "Fluendo.FluendoPlatform.Core.App\Fluendo.FluendoPlatform.Core.App.csproj", "{CCAE4A50-A974-4012-B8BC-F4DBECCB90BC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Fluendo.FluendoPlatform.Core", "Fluendo.FluendoPlatform.Core", "{05988B77-7F75-413D-9421-9C0BF5FB60F0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Fluendo.FluendoPlatform.StatsService", "Fluendo.FluendoPlatform.StatsService", "{943C1D49-B4EC-426F-8C9B-8411B289B6F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluendo.FluendoPlatform.StatsService.WebApi", "Fluendo.FluendoPlatform.StatsService.WebApi\Fluendo.FluendoPlatform.StatsService.WebApi.csproj", "{0CEFE724-BF3E-4CB6-9AB1-5C872A0FD91C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluendo.FluendoPlatform.StatsService.WebApi", "Fluendo.FluendoPlatform.StatsService.WebApi\Fluendo.FluendoPlatform.StatsService.WebApi.csproj", "{0CEFE724-BF3E-4CB6-9AB1-5C872A0FD91C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Fluendo.FluendoPlatform.Infrastructure", "Fluendo.FluendoPlatform.Infrastructure", "{FC4695A3-AA04-4C4D-990A-524527DC1D96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluendo.FluendoPlatform.Infrastructure.Common", "Fluendo.FluendoPlatform.Infrastructure.Common\Fluendo.FluendoPlatform.Infrastructure.Common.csproj", "{8F280513-B5EC-4182-9FE5-718D131E8339}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +35,10 @@ Global
 		{0CEFE724-BF3E-4CB6-9AB1-5C872A0FD91C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CEFE724-BF3E-4CB6-9AB1-5C872A0FD91C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CEFE724-BF3E-4CB6-9AB1-5C872A0FD91C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F280513-B5EC-4182-9FE5-718D131E8339}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F280513-B5EC-4182-9FE5-718D131E8339}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F280513-B5EC-4182-9FE5-718D131E8339}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F280513-B5EC-4182-9FE5-718D131E8339}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +47,7 @@ Global
 		{C52FA58B-09A5-4BD8-8643-41F020AD9482} = {05988B77-7F75-413D-9421-9C0BF5FB60F0}
 		{CCAE4A50-A974-4012-B8BC-F4DBECCB90BC} = {05988B77-7F75-413D-9421-9C0BF5FB60F0}
 		{0CEFE724-BF3E-4CB6-9AB1-5C872A0FD91C} = {943C1D49-B4EC-426F-8C9B-8411B289B6F0}
+		{8F280513-B5EC-4182-9FE5-718D131E8339} = {FC4695A3-AA04-4C4D-990A-524527DC1D96}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A2599970-42C4-46CB-B09A-3B377F651AAE}

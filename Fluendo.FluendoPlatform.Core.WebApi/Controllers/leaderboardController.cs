@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Fluendo.FluendoPlatform.Infrastructure.Common;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -12,24 +13,22 @@ namespace Fluendo.FluendoPlatform.Core.WebApi.Controllers
     [ApiController]
     public class LeaderboardController : ControllerBase
     {
+        protected readonly IHttpUtility _httpUtility;
+
+        public LeaderboardController(IHttpUtility httpUtility)
+        {
+            _httpUtility = httpUtility;
+        }
+
         // GET api/leaderboard/test
         [HttpGet("{gamemode}")]
-        public async Task<ActionResult<string>> GetAsync(string gamemode)
+        public async Task<ActionResult<object>> GetAsync(string gamemode)
         {
-            var client = HttpClientFactory.Create();
-
             var uri = new Uri($"http://localhost:51433/api/leaderboard/{gamemode}");
 
-            using (var result = await client.GetAsync(uri))
-            {
-                if (!result.IsSuccessStatusCode)
-                    throw new HttpRequestException($"Error in request to {uri} : {result.StatusCode}");
+            var result = await _httpUtility.GetAsync(uri);
 
-                var ret = JsonConvert.DeserializeObject<string>(result.Content.ReadAsStringAsync().Result);
-                
-
-                return ret;
-            }
+            return result;
         }
     }
 }

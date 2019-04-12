@@ -1,0 +1,8 @@
+{
+  "defaultAssembly": "Fluendo.FluendoPlatform.Core.WebApi",
+  "modules": [
+    {
+      "type": "Fluendo.FluendoPlatform.Core.WebApi.Ioc.MainModule, Fluendo.FluendoPlatform.Core.WebApi"
+    }
+  ]
+}

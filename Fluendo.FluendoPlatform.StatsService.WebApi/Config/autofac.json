@@ -1,0 +1,8 @@
+{
+  "defaultAssembly": "Fluendo.FluendoPlatform.StatsService.WebApi",
+  "modules": [
+    {
+      "type": "Fluendo.FluendoPlatform.StatsService.WebApi.Ioc.MainModule, Fluendo.FluendoPlatform.StatsService.WebApi"
+    }
+  ]
+}

@@ -18,7 +18,7 @@ namespace Fluendo.FluendoPlatform.StatsService.WebApi
                 var connectionString = "mongodb://localhost";
                 client = new MongoClient(connectionString);
                 var database = client.GetDatabase("local");
-                var leaderboardCol = database.GetCollection<BsonDocument>("PlayerStats");
+                var leaderboardCol = database.GetCollection<BsonDocument>("Leaderboard");
 
                 BsonDocument personDoc = new BsonDocument();
                 MongoDB.Bson.BsonDocument leaderboardTopListDoc = MongoDB.Bson.Serialization.BsonSerializer.Deserialize<BsonDocument>(leaderboardTopList);

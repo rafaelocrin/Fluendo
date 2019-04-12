@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
+using Autofac;
+using Autofac.Configuration;
 
 namespace Fluendo.FluendoPlatform.StatsService.WebApi
 {
@@ -26,6 +28,8 @@ namespace Fluendo.FluendoPlatform.StatsService.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddHttpClient();
 
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new Info
@@ -52,6 +56,11 @@ namespace Fluendo.FluendoPlatform.StatsService.WebApi
             app.UseSwaggerUI(c => {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Fluendo StatsService WebApi V1");
             });
+        }
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterModule(new ConfigurationModule(Configuration));
         }
     }
 }
