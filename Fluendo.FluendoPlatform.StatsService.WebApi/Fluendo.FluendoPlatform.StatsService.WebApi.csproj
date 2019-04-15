@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Fluendo.FluendoPlatform.Infrastructure.Common\Fluendo.FluendoPlatform.Infrastructure.Common.csproj" />
+    <ProjectReference Include="..\Fluendo.FluendoPlatform.Infrastructure.Resources\Fluendo.FluendoPlatform.Infrastructure.Resources.csproj" />
     <ProjectReference Include="..\Fluendo.FluendoPlatform.StatsService.Dal\Fluendo.FluendoPlatform.StatsService.Persistence.csproj" />
     <ProjectReference Include="..\Fluendo.FluendoPlatform.StatsService.Services\Fluendo.FluendoPlatform.StatsService.Services.csproj" />
   </ItemGroup>

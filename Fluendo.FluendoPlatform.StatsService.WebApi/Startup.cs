@@ -13,6 +13,8 @@ using Swashbuckle.AspNetCore.Swagger;
 using Autofac;
 using Autofac.Configuration;
 using Fluendo.FluendoPlatform.Infrastructure.Common.Config;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 namespace Fluendo.FluendoPlatform.StatsService.WebApi
 {
@@ -28,11 +30,41 @@ namespace Fluendo.FluendoPlatform.StatsService.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddLocalization(o => { o.ResourcesPath = "Resources"; });
+
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                CultureInfo[] supportedCultures = new[]
+                {
+                    new CultureInfo("en-US")
+                };
+
+                options.DefaultRequestCulture = new RequestCulture("en-US");
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+            });
+
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddHttpClient();
 
+
+
             services.Configure<ApplicationOptions>(Configuration.GetSection("ApplicationOptions"));
+
+            //services.AddLocalization(o => o.ResourcesPath = "Resources");
+            //services.Configure<RequestLocalizationOptions>(options =>
+            //{
+            //    var supportedCultures = new[]{ new CultureInfo("en-US")};
+
+            //    //options.DefaultRequestCulture = new RequestCulture("en-US", "en-US");
+            //    options.DefaultRequestCulture = new RequestCulture("en-US");
+
+            //    options.SupportedCultures = supportedCultures;
+
+            //    options.SupportedUICultures = supportedCultures;
+            //});
 
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new Info
@@ -51,6 +83,11 @@ namespace Fluendo.FluendoPlatform.StatsService.WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            //var options = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
+            //app.UseRequestLocalization(options.Value);
+
+            app.UseRequestLocalization(); //before app.UseMvc()
 
             app.UseMvc();
 

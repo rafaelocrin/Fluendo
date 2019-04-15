@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Fluendo.FluendoPlatform.Infrastructure.Common\Fluendo.FluendoPlatform.Infrastructure.Common.csproj" />
+    <ProjectReference Include="..\Fluendo.FluendoPlatform.Infrastructure.Resources\Fluendo.FluendoPlatform.Infrastructure.Resources.csproj" />
   </ItemGroup>
 
 </Project>

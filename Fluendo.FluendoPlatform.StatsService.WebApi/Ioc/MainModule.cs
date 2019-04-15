@@ -2,6 +2,7 @@
 using Autofac.Core;
 using Fluendo.FluendoPlatform.Infrastructure.Common;
 using Fluendo.FluendoPlatform.Infrastructure.Common.Config;
+using Fluendo.FluendoPlatform.Infrastructure.Resources;
 using Fluendo.FluendoPlatform.StatsService.Persistence.Repositories;
 using Fluendo.FluendoPlatform.StatsService.Services;
 using Microsoft.Extensions.Options;
@@ -22,6 +23,10 @@ namespace Fluendo.FluendoPlatform.StatsService.WebApi.Ioc
             builder.RegisterType<HttpUtility>()
             .As<IHttpUtility>()
             .InstancePerLifetimeScope();
+
+            //builder.RegisterType<Resource>()
+            //.As<IResource>()
+            //.InstancePerLifetimeScope();
 
             builder.RegisterType<MongoClient>()
             .SingleInstance()

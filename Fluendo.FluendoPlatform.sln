@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluendo.FluendoPlatform.Sta
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluendo.FluendoPlatform.StatsService.Services", "Fluendo.FluendoPlatform.StatsService.Services\Fluendo.FluendoPlatform.StatsService.Services.csproj", "{FC1762F6-E712-47DA-9549-43EC6865E92B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluendo.FluendoPlatform.Infrastructure.Resources", "Fluendo.FluendoPlatform.Infrastructure.Resources\Fluendo.FluendoPlatform.Infrastructure.Resources.csproj", "{D783273C-B9E0-41F9-AB5E-9941FB0EBE0B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{FC1762F6-E712-47DA-9549-43EC6865E92B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC1762F6-E712-47DA-9549-43EC6865E92B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC1762F6-E712-47DA-9549-43EC6865E92B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D783273C-B9E0-41F9-AB5E-9941FB0EBE0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D783273C-B9E0-41F9-AB5E-9941FB0EBE0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D783273C-B9E0-41F9-AB5E-9941FB0EBE0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D783273C-B9E0-41F9-AB5E-9941FB0EBE0B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +68,7 @@ Global
 		{8F280513-B5EC-4182-9FE5-718D131E8339} = {FC4695A3-AA04-4C4D-990A-524527DC1D96}
 		{30060651-FD65-40C9-AE4D-9193E75571D0} = {943C1D49-B4EC-426F-8C9B-8411B289B6F0}
 		{FC1762F6-E712-47DA-9549-43EC6865E92B} = {943C1D49-B4EC-426F-8C9B-8411B289B6F0}
+		{D783273C-B9E0-41F9-AB5E-9941FB0EBE0B} = {FC4695A3-AA04-4C4D-990A-524527DC1D96}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A2599970-42C4-46CB-B09A-3B377F651AAE}

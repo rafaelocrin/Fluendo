@@ -1,4 +1,6 @@
 ﻿using Fluendo.FluendoPlatform.Infrastructure.Common.Config;
+using Fluendo.FluendoPlatform.Infrastructure.Resources;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -11,7 +13,10 @@ namespace Fluendo.FluendoPlatform.StatsService.Persistence.Repositories
 {
     public class PlayerStatsRepository : BaseRepository, IPlayerStatsRepository
     {
-        public PlayerStatsRepository(MongoClient dbClient, IOptions<ApplicationOptions> appOptions) : base(dbClient, appOptions)
+        private readonly IStringLocalizer<SharedResource> _resources;
+
+        public PlayerStatsRepository(MongoClient dbClient, IOptions<ApplicationOptions> appOptions,
+                                    IStringLocalizer<SharedResource> resource) : base(dbClient, appOptions)
         {
         }
 
@@ -21,7 +26,7 @@ namespace Fluendo.FluendoPlatform.StatsService.Persistence.Repositories
 
             try
             {
-                var leaderboardCol = Database.GetCollection<BsonDocument>("PlayerStats");
+                var leaderboardCol = Database.GetCollection<BsonDocument>(_resources["Repository_Database_PlayerStats"]);
 
                 var playerStatsDoc = MongoDB.Bson.Serialization.BsonSerializer.Deserialize<BsonDocument>(playerStats);
 
@@ -31,7 +36,7 @@ namespace Fluendo.FluendoPlatform.StatsService.Persistence.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("Error when trying to udpate into PlayerStats collection");
+                throw new Exception(_resources["Error_Repository_Update_PlayerStats"]);
             }
 
             return ret;
