@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Fluendo.FluendoPlatform.Infrastructure.Common\Fluendo.FluendoPlatform.Infrastructure.Common.csproj" />
+    <ProjectReference Include="..\Fluendo.FluendoPlatform.StatsService.Dal\Fluendo.FluendoPlatform.StatsService.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>

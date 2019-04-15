@@ -15,7 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluendo.FluendoPlatform.Sta
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Fluendo.FluendoPlatform.Infrastructure", "Fluendo.FluendoPlatform.Infrastructure", "{FC4695A3-AA04-4C4D-990A-524527DC1D96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluendo.FluendoPlatform.Infrastructure.Common", "Fluendo.FluendoPlatform.Infrastructure.Common\Fluendo.FluendoPlatform.Infrastructure.Common.csproj", "{8F280513-B5EC-4182-9FE5-718D131E8339}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluendo.FluendoPlatform.Infrastructure.Common", "Fluendo.FluendoPlatform.Infrastructure.Common\Fluendo.FluendoPlatform.Infrastructure.Common.csproj", "{8F280513-B5EC-4182-9FE5-718D131E8339}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluendo.FluendoPlatform.StatsService.Persistence", "Fluendo.FluendoPlatform.StatsService.Dal\Fluendo.FluendoPlatform.StatsService.Persistence.csproj", "{30060651-FD65-40C9-AE4D-9193E75571D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluendo.FluendoPlatform.StatsService.Services", "Fluendo.FluendoPlatform.StatsService.Services\Fluendo.FluendoPlatform.StatsService.Services.csproj", "{FC1762F6-E712-47DA-9549-43EC6865E92B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{8F280513-B5EC-4182-9FE5-718D131E8339}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F280513-B5EC-4182-9FE5-718D131E8339}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F280513-B5EC-4182-9FE5-718D131E8339}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30060651-FD65-40C9-AE4D-9193E75571D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30060651-FD65-40C9-AE4D-9193E75571D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30060651-FD65-40C9-AE4D-9193E75571D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30060651-FD65-40C9-AE4D-9193E75571D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC1762F6-E712-47DA-9549-43EC6865E92B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC1762F6-E712-47DA-9549-43EC6865E92B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC1762F6-E712-47DA-9549-43EC6865E92B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC1762F6-E712-47DA-9549-43EC6865E92B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +60,8 @@ Global
 		{CCAE4A50-A974-4012-B8BC-F4DBECCB90BC} = {05988B77-7F75-413D-9421-9C0BF5FB60F0}
 		{0CEFE724-BF3E-4CB6-9AB1-5C872A0FD91C} = {943C1D49-B4EC-426F-8C9B-8411B289B6F0}
 		{8F280513-B5EC-4182-9FE5-718D131E8339} = {FC4695A3-AA04-4C4D-990A-524527DC1D96}
+		{30060651-FD65-40C9-AE4D-9193E75571D0} = {943C1D49-B4EC-426F-8C9B-8411B289B6F0}
+		{FC1762F6-E712-47DA-9549-43EC6865E92B} = {943C1D49-B4EC-426F-8C9B-8411B289B6F0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A2599970-42C4-46CB-B09A-3B377F651AAE}
