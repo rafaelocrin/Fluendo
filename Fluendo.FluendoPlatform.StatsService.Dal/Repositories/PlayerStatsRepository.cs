@@ -18,6 +18,7 @@ namespace Fluendo.FluendoPlatform.StatsService.Persistence.Repositories
         public PlayerStatsRepository(MongoClient dbClient, IOptions<ApplicationOptions> appOptions,
                                     IStringLocalizer<SharedResource> resource) : base(dbClient, appOptions)
         {
+            _resources = resource;
         }
 
         public int Update(string playerStats)

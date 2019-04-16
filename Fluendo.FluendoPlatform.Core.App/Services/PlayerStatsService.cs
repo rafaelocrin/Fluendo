@@ -30,11 +30,11 @@ namespace Fluendo.FluendoPlatform.Core.App.Services
             var cacheKey = _appOptions.Value.RedisCache["CacheKey_PlayerStats"];
             var cacheTTL = _appOptions.Value.RedisCache["CacheTTL"];
 
-            var leaderboardCached = _redisCache.GetAsync(cacheKey);
+            var playerStatsCached = await _redisCache.GetAsync(cacheKey);
 
-            if (leaderboardCached != null)
+            if (playerStatsCached != null)
             {
-                result = leaderboardCached;
+                result = playerStatsCached;
             }
             else
             {
