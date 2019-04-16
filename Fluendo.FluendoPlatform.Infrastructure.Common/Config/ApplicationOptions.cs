@@ -8,5 +8,6 @@ namespace Fluendo.FluendoPlatform.Infrastructure.Common.Config
     {
         public IDictionary<string, string> ConnectionString { get; set; } = new Dictionary<string, string>();
         public IDictionary<string, string> Endpoints { get; set; } = new Dictionary<string, string>();
+        public IDictionary<string, string> RedisCache { get; set; } = new Dictionary<string, string>();
     }
 }

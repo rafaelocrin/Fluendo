@@ -33,6 +33,11 @@ namespace Fluendo.FluendoPlatform.Core.WebApi
 
             services.AddHttpClient();
 
+            services.AddDistributedRedisCache(option =>
+            {
+                option.Configuration = "127.0.0.1";
+                option.InstanceName = "FluendoCoreWebApi";
+            });
             services.Configure<ApplicationOptions>(Configuration.GetSection("ApplicationOptions"));
 
             services.AddSwaggerGen(c => {
@@ -57,7 +62,6 @@ namespace Fluendo.FluendoPlatform.Core.WebApi
 
             app.UseSwagger();
             
-
             app.UseSwaggerUI(c => {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Fluendo Core WebApi V1");
             });

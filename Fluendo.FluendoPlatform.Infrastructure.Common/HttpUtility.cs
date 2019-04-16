@@ -73,7 +73,7 @@ namespace Fluendo.FluendoPlatform.Infrastructure.Common
         {
             using (var result = await httClient.GetAsync(uri))
             {
-
+                
                 if (!result.IsSuccessStatusCode)
                     throw new HttpRequestException($"Error in request to {uri} : {result.StatusCode}");
 

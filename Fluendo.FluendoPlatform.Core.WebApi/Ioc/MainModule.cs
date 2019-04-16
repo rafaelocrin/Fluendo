@@ -1,5 +1,8 @@
 ﻿using Autofac;
+using Fluendo.FluendoPlatform.Core.App.Cache;
+using Fluendo.FluendoPlatform.Core.App.Services;
 using Fluendo.FluendoPlatform.Infrastructure.Common;
+using Microsoft.Extensions.Caching.Distributed;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +19,18 @@ namespace Fluendo.FluendoPlatform.Core.WebApi.Ioc
             builder.RegisterType<HttpUtility>()
             .As<IHttpUtility>()
             .InstancePerLifetimeScope();
-        }
 
+            builder.RegisterType<RedisCache>()
+            .As<IRedisCache>()
+            .InstancePerLifetimeScope();
+
+            builder.RegisterType<LeaderboardService>()
+            .As<ILeaderboardService>()
+            .InstancePerLifetimeScope();
+
+            builder.RegisterType<PlayerStatsService>()
+            .As<IPlayerStatsService>()
+            .InstancePerLifetimeScope();
+        }
     }
 }

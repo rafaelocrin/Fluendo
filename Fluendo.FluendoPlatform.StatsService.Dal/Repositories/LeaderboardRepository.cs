@@ -34,8 +34,6 @@ namespace Fluendo.FluendoPlatform.StatsService.Persistence.Repositories
                 leaderboardCol.InsertOne(leaderboardTopListDoc);
 
                 ret = 0; // OK
-
-                throw new Exception();
             }
             catch (Exception ex)
             {
