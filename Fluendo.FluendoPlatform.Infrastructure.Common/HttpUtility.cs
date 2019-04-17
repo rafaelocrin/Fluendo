@@ -11,6 +11,7 @@ namespace Fluendo.FluendoPlatform.Infrastructure.Common
     public class HttpUtility : IHttpUtility
     {
         protected readonly IHttpClientFactory _httpClientFactory;
+        private const string tokenAuthenticationSchema = "Bearer";
 
         public HttpUtility(IHttpClientFactory httpClientFactory)
         {
@@ -108,7 +109,11 @@ namespace Fluendo.FluendoPlatform.Infrastructure.Common
         private void PrepareRequest(HttpClient httpClient, string authorizationKey)
         {
             if (authorizationKey != null)
-                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authorizationKey);
+            {
+                var authSchema = (authorizationKey.IndexOf(tokenAuthenticationSchema) >= 0) ? tokenAuthenticationSchema : string.Empty;
+
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(authSchema, authorizationKey.Split(" ")[1]);
+            }
 
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.api+json"));
         }

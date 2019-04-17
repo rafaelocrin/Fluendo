@@ -30,9 +30,9 @@ namespace Fluendo.FluendoPlatform.Core.WebApi.Controllers
 
         // GET api/leaderboard/test
         [HttpGet("{gamemode}")]
-        public async Task<ActionResult<object>> GetAsync([FromHeader(Name = "Authorization")] string authHeader, string gamemode)
+        public async Task<ActionResult<object>> GetAsync([FromHeader(Name = "Authorization")] string authorizationToken, string gamemode)
         {
-            return await _leaderboardService.GetAsync(gamemode);
+            return await _leaderboardService.GetAsync(gamemode, authorizationToken);
         }
 
     }

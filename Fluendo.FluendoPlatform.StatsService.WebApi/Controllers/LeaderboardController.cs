@@ -8,6 +8,7 @@ using Fluendo.FluendoPlatform.Infrastructure.Common;
 using Fluendo.FluendoPlatform.Infrastructure.Common.Config;
 using Fluendo.FluendoPlatform.StatsService.Persistence;
 using Fluendo.FluendoPlatform.StatsService.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
@@ -15,15 +16,14 @@ using Newtonsoft.Json.Linq;
 
 namespace Fluendo.FluendoPlatform.StatsService.WebApi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class LeaderboardController : ControllerBase
+    public class LeaderboardController : BaseController, IBaseController
     {
         protected readonly IHttpUtility _httpUtility;
         protected readonly IOptions<ApplicationOptions> _appOptions;
         protected readonly ILeaderboardService _leaderboardService;
-
-        private const string pugbApiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxMWU5NDY2MC0zZTY0LTAxMzctYTUxNC0wNzQyYmM5YmRiYzAiLCJpc3MiOiJnYW1lbG9ja2VyIiwiaWF0IjoxNTU0OTcyMzIzLCJwdWIiOiJibHVlaG9sZSIsInRpdGxlIjoicHViZyIsImFwcCI6Ii0wYjhhMzkyZC1lNjQ1LTRlYzktYTJiNC0yNmMyMmJmN2VmNDkifQ.y6A5spdAMmgl44reEEhj6i27k8v299wUI57PM0Da0NE";
 
         public LeaderboardController(IOptions<ApplicationOptions> appOptions, IHttpUtility httpUtility, ILeaderboardService leaderboardService)
         {
@@ -34,7 +34,7 @@ namespace Fluendo.FluendoPlatform.StatsService.WebApi.Controllers
 
         // GET api/leaderboard/test
         [HttpGet("{gamemode}")]
-        public async Task<ActionResult<object>> GetAsync(string gamemode)
+        public async Task<ActionResult<object>> GetAsync([FromHeader(Name = "Authorization")] string authorizationToken, string gamemode)
         {
             var uri = new Uri(string.Format(_appOptions.Value.Endpoints["StatsService_Leaderboard"], gamemode));
 

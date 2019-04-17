@@ -24,7 +24,7 @@ namespace Fluendo.FluendoPlatform.Core.App.Services
             _httpUtility = httpUtility;
         }
 
-        public async Task<ActionResult<object>> GetAsync(string gamemode)
+        public async Task<ActionResult<object>> GetAsync(string gamemode, string authorizationToken)
         {
             object result = null;
             var cacheKey = string.Format(_appOptions.Value.RedisCache["CacheKey_Leaderboard"], gamemode);
@@ -39,7 +39,7 @@ namespace Fluendo.FluendoPlatform.Core.App.Services
             {
                 var uri = new Uri(string.Format(_appOptions.Value.Endpoints["Core_Leaderboard"], gamemode));
 
-                result = await _httpUtility.GetAsync(uri);
+                result = await _httpUtility.GetAsync(uri, authorizationToken);
 
                 var cacheTTL = _appOptions.Value.RedisCache["CacheTTL"];
 

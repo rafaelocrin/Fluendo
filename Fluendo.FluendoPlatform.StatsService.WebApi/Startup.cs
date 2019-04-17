@@ -15,6 +15,9 @@ using Autofac.Configuration;
 using Fluendo.FluendoPlatform.Infrastructure.Common.Config;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Fluendo.FluendoPlatform.StatsService.WebApi
 {
@@ -30,6 +33,21 @@ namespace Fluendo.FluendoPlatform.StatsService.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = Configuration["Jwt:Issuer"],
+                    ValidAudience = Configuration["Jwt:Issuer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                };
+            });
+
             services.AddLocalization(o => { o.ResourcesPath = "Resources"; });
 
             services.Configure<RequestLocalizationOptions>(options =>
@@ -44,27 +62,11 @@ namespace Fluendo.FluendoPlatform.StatsService.WebApi
                 options.SupportedUICultures = supportedCultures;
             });
 
-            
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddHttpClient();
 
-
             services.Configure<ApplicationOptions>(Configuration.GetSection("ApplicationOptions"));
-
-            //services.AddLocalization(o => o.ResourcesPath = "Resources");
-            //services.Configure<RequestLocalizationOptions>(options =>
-            //{
-            //    var supportedCultures = new[]{ new CultureInfo("en-US")};
-
-            //    //options.DefaultRequestCulture = new RequestCulture("en-US", "en-US");
-            //    options.DefaultRequestCulture = new RequestCulture("en-US");
-
-            //    options.SupportedCultures = supportedCultures;
-
-            //    options.SupportedUICultures = supportedCultures;
-            //});
 
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new Info
@@ -84,10 +86,9 @@ namespace Fluendo.FluendoPlatform.StatsService.WebApi
                 app.UseDeveloperExceptionPage();
             }
 
-            //var options = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
-            //app.UseRequestLocalization(options.Value);
+            app.UseRequestLocalization();
 
-            app.UseRequestLocalization(); //before app.UseMvc()
+            app.UseAuthentication();
 
             app.UseMvc();
 

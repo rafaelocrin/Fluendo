@@ -8,6 +8,6 @@ namespace Fluendo.FluendoPlatform.Core.App.Services
 {
     public interface ILeaderboardService
     {
-        Task<ActionResult<object>> GetAsync(string gamemode);
+        Task<ActionResult<object>> GetAsync(string gamemode, string authHeader);
     }
 }

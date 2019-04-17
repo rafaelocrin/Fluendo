@@ -44,7 +44,8 @@ namespace Fluendo.FluendoPlatform.Infrastructure.Authentication.Controllers
 
             var token = new JwtSecurityToken(_config["Jwt:Issuer"],
               _config["Jwt:Issuer"],
-              expires: DateTime.Now.AddSeconds(Convert.ToDouble(_config["Expiration"])),
+              //expires: DateTime.Now.AddSeconds(Convert.ToDouble(_config["Jwt:Expiration"])),
+            expires: DateTime.Now.AddSeconds(Convert.ToInt32(_config["Jwt:Expiration"])),
               signingCredentials: creds);
 
             return new JwtSecurityTokenHandler().WriteToken(token);

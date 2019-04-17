@@ -27,9 +27,9 @@ namespace Fluendo.FluendoPlatform.Core.WebApi.Controllers
 
         // GET api/player/{accountId}/seasons/lifetime"
         [HttpGet("{accountId}/seasons/lifetime")]
-        public async Task<ActionResult<object>> GetAsync([FromHeader(Name = "Authorization")] string authHeader, string accountId)
+        public async Task<ActionResult<object>> GetAsync([FromHeader(Name = "Authorization")] string authorizationToken, string accountId)
         {
-            return await _playerStatsService.GetAsync(accountId);
+            return await _playerStatsService.GetAsync(accountId, authorizationToken);
         }
     }
 }
