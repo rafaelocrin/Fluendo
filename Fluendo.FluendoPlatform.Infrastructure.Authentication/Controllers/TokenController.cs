@@ -4,9 +4,11 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Fluendo.FluendoPlatform.Infrastructure.Common.Config;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Fluendo.FluendoPlatform.Infrastructure.Authentication.Controllers
@@ -15,10 +17,12 @@ namespace Fluendo.FluendoPlatform.Infrastructure.Authentication.Controllers
     public class TokenController : Controller
     {
         private IConfiguration _config;
+        protected readonly IOptions<ApplicationOptions> _appOptions;
 
-        public TokenController(IConfiguration config)
+        public TokenController(IConfiguration config, IOptions<ApplicationOptions> appOption)
         {
             _config = config;
+            _appOptions = appOption;
         }
 
         [AllowAnonymous]
@@ -40,7 +44,7 @@ namespace Fluendo.FluendoPlatform.Infrastructure.Authentication.Controllers
 
             var token = new JwtSecurityToken(_config["Jwt:Issuer"],
               _config["Jwt:Issuer"],
-              expires: DateTime.Now.AddMinutes(30),
+              expires: DateTime.Now.AddSeconds(Convert.ToDouble(_config["Expiration"])),
               signingCredentials: creds);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
