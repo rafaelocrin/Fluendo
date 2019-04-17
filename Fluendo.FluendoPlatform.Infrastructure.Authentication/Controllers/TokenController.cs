@@ -23,21 +23,17 @@ namespace Fluendo.FluendoPlatform.Infrastructure.Authentication.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult CreateToken([FromBody]LoginModel login)
+        public IActionResult CreateToken()
         {
             IActionResult response = Unauthorized();
-            var user = Authenticate(login);
-
-            if (user != null)
-            {
-                var tokenString = BuildToken(user);
-                response = Ok(new { token = tokenString });
-            }
+            
+            var tokenString = BuildToken();
+            response = Ok(new { token = tokenString });
 
             return response;
         }
 
-        private string BuildToken(UserModel user)
+        private string BuildToken()
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -50,28 +46,28 @@ namespace Fluendo.FluendoPlatform.Infrastructure.Authentication.Controllers
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        private UserModel Authenticate(LoginModel login)
-        {
-            UserModel user = null;
+        //private UserModel Authenticate(LoginModel login)
+        //{
+        //    UserModel user = null;
 
-            if (login.Username == "mario" && login.Password == "secret")
-            {
-                user = new UserModel { Name = "Mario Rossi", Email = "mario.rossi@domain.com" };
-            }
-            return user;
-        }
+        //    if (login.Username == "mario" && login.Password == "secret")
+        //    {
+        //        user = new UserModel { Name = "Mario Rossi", Email = "mario.rossi@domain.com" };
+        //    }
+        //    return user;
+        //}
 
-        public class LoginModel
-        {
-            public string Username { get; set; }
-            public string Password { get; set; }
-        }
+        //public class LoginModel
+        //{
+        //    public string Username { get; set; }
+        //    public string Password { get; set; }
+        //}
 
-        private class UserModel
-        {
-            public string Name { get; set; }
-            public string Email { get; set; }
-            public DateTime Birthdate { get; set; }
-        }
+        //private class UserModel
+        //{
+        //    public string Name { get; set; }
+        //    public string Email { get; set; }
+        //    public DateTime Birthdate { get; set; }
+        //}
     }
 }
