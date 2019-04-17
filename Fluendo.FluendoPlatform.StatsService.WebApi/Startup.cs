@@ -44,11 +44,11 @@ namespace Fluendo.FluendoPlatform.StatsService.WebApi
                 options.SupportedUICultures = supportedCultures;
             });
 
+            
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddHttpClient();
-
 
 
             services.Configure<ApplicationOptions>(Configuration.GetSection("ApplicationOptions"));

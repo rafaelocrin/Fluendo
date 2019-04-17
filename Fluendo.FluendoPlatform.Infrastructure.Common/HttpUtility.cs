@@ -27,7 +27,7 @@ namespace Fluendo.FluendoPlatform.Infrastructure.Common
 
                 PrepareRequest(client, null);
 
-                resultRequest = await InvokeRequest(client, uri);
+                resultRequest = await InvokeGetRequest(client, uri);
             }
             catch (Exception ex)
             {
@@ -49,7 +49,51 @@ namespace Fluendo.FluendoPlatform.Infrastructure.Common
 
                 PrepareRequest(client, authorizationKey);
 
-                resultRequest = await InvokeRequest(client, uri);
+                resultRequest = await InvokeGetRequest(client, uri);
+            }
+            catch (Exception ex)
+            {
+                // TODO: log exception
+
+                throw new HttpRequestException($"Error in request to {uri}");
+            }
+
+            return resultRequest;
+        }
+
+        public async Task<object> PostAsync(Uri uri, HttpContent content)
+        {
+            object resultRequest;
+
+            try
+            {
+                var client = _httpClientFactory.CreateClient();
+
+                PrepareRequest(client, null);
+
+                resultRequest = await InvokePostRequest(client, uri, content);
+            }
+            catch (Exception ex)
+            {
+                // TODO: log exception
+
+                throw new HttpRequestException($"Error in request to {uri}");
+            }
+
+            return resultRequest;
+        }
+
+        public async Task<object> PostAsync(Uri uri, string authorizationKey, HttpContent content)
+        {
+            object resultRequest;
+
+            try
+            {
+                var client = _httpClientFactory.CreateClient();
+
+                PrepareRequest(client, authorizationKey);
+
+                resultRequest = await InvokePostRequest(client, uri, content);
             }
             catch (Exception ex)
             {
@@ -69,11 +113,22 @@ namespace Fluendo.FluendoPlatform.Infrastructure.Common
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.api+json"));
         }
 
-        private async Task<object> InvokeRequest(HttpClient httClient, Uri uri)
+        private async Task<object> InvokeGetRequest(HttpClient httClient, Uri uri)
         {
             using (var result = await httClient.GetAsync(uri))
             {
                 
+                if (!result.IsSuccessStatusCode)
+                    throw new HttpRequestException($"Error in request to {uri} : {result.StatusCode}");
+
+                return JsonConvert.DeserializeObject<object>(result.Content.ReadAsStringAsync().Result);
+            }
+        }
+
+        private async Task<object> InvokePostRequest(HttpClient httClient, Uri uri, HttpContent content)
+        {
+            using (var result = await httClient.PostAsync(uri, content))
+            {
                 if (!result.IsSuccessStatusCode)
                     throw new HttpRequestException($"Error in request to {uri} : {result.StatusCode}");
 

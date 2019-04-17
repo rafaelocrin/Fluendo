@@ -1,0 +1,8 @@
+{
+  "defaultAssembly": "Fluendo.FluendoPlatform.Infrastructure.Authentication",
+  "modules": [
+    {
+      "type": "Fluendo.FluendoPlatform.Infrastructure.Authentication.Ioc.MainModule, Fluendo.FluendoPlatform.Infrastructure.Authentication"
+    }
+  ]
+}

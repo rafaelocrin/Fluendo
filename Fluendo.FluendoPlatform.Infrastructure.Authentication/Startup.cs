@@ -1,24 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Autofac;
+﻿using Autofac;
 using Autofac.Configuration;
-using Autofac.Extensions.DependencyInjection;
 using Fluendo.FluendoPlatform.Infrastructure.Common.Config;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
 
-namespace Fluendo.FluendoPlatform.Core.WebApi
+namespace Fluendo.FluendoPlatform.Infrastructure.Authentication
 {
     public class Startup
     {
@@ -32,38 +22,33 @@ namespace Fluendo.FluendoPlatform.Core.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                        .AddJwtBearer(options =>
-                        {
-                            options.TokenValidationParameters = new TokenValidationParameters
-                            {
-                                ValidateIssuer = true,
-                                ValidateAudience = true,
-                                ValidateLifetime = true,
-                                ValidateIssuerSigningKey = true,
-                                ValidIssuer = Configuration["Jwt:Issuer"],
-                                ValidAudience = Configuration["Jwt:Issuer"],
-                                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
-                            };
-                        });
+            //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            //        .AddJwtBearer(options =>
+            //        {
+            //            options.TokenValidationParameters = new TokenValidationParameters
+            //            {
+            //                ValidateIssuer = true,
+            //                ValidateAudience = true,
+            //                ValidateLifetime = true,
+            //                ValidateIssuerSigningKey = true,
+            //                ValidIssuer = Configuration["Jwt:Issuer"],
+            //                ValidAudience = Configuration["Jwt:Issuer"],
+            //                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+            //            };
+            //        });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddHttpClient();
 
-            services.AddDistributedRedisCache(option =>
-            {
-                option.Configuration = "127.0.0.1";
-                option.InstanceName = "FluendoCoreWebApi";
-            });
             services.Configure<ApplicationOptions>(Configuration.GetSection("ApplicationOptions"));
 
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new Info
                 {
                     Version = "v1",
-                    Title = "Fluendo Core WebApi",
-                    Description = "Fluendo Core WebApi"
+                    Title = "Fluendo Infrastructure Authentication",
+                    Description = "Fluendo Infrastructure Authentication"
                 });
             });
         }
@@ -81,9 +66,9 @@ namespace Fluendo.FluendoPlatform.Core.WebApi
             app.UseMvc();
 
             app.UseSwagger();
-            
+
             app.UseSwaggerUI(c => {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Fluendo Core WebApi V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Fluendo Infrastructure Authentication V1");
             });
         }
 
@@ -91,6 +76,5 @@ namespace Fluendo.FluendoPlatform.Core.WebApi
         {
             builder.RegisterModule(new ConfigurationModule(Configuration));
         }
-
     }
 }

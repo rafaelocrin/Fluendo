@@ -2,12 +2,6 @@
 using Fluendo.FluendoPlatform.Core.App.Cache;
 using Fluendo.FluendoPlatform.Core.App.Services;
 using Fluendo.FluendoPlatform.Infrastructure.Common;
-using Microsoft.Extensions.Caching.Distributed;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 using AutofacModule = Autofac.Module;
 
 namespace Fluendo.FluendoPlatform.Core.WebApi.Ioc
