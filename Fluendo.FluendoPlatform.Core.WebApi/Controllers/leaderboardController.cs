@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Fluendo.FluendoPlatform.Core.App.Services;
 using Fluendo.FluendoPlatform.Infrastructure.Common;
 using Fluendo.FluendoPlatform.Infrastructure.Common.Config;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Options;
@@ -15,6 +16,7 @@ using StackExchange.Redis;
 
 namespace Fluendo.FluendoPlatform.Core.WebApi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class LeaderboardController : ControllerBase
@@ -28,7 +30,7 @@ namespace Fluendo.FluendoPlatform.Core.WebApi.Controllers
 
         // GET api/leaderboard/test
         [HttpGet("{gamemode}")]
-        public async Task<ActionResult<object>> GetAsync(string gamemode)
+        public async Task<ActionResult<object>> GetAsync([FromHeader(Name = "Authorization")] string authHeader, string gamemode)
         {
             return await _leaderboardService.GetAsync(gamemode);
         }

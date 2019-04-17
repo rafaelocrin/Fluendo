@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 using Fluendo.FluendoPlatform.Core.App.Services;
 using Fluendo.FluendoPlatform.Infrastructure.Common;
 using Fluendo.FluendoPlatform.Infrastructure.Common.Config;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
 namespace Fluendo.FluendoPlatform.Core.WebApi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PlayerController : ControllerBase
@@ -25,7 +27,7 @@ namespace Fluendo.FluendoPlatform.Core.WebApi.Controllers
 
         // GET api/player/{accountId}/seasons/lifetime"
         [HttpGet("{accountId}/seasons/lifetime")]
-        public async Task<ActionResult<object>> GetAsync(string accountId)
+        public async Task<ActionResult<object>> GetAsync([FromHeader(Name = "Authorization")] string authHeader, string accountId)
         {
             return await _playerStatsService.GetAsync(accountId);
         }
