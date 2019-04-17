@@ -6,8 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Fluendo.FluendoPlatform.Infrastructure.Common;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using static Fluendo.FluendoPlatform.Infrastructure.Authentication.Controllers.TokenController;
 
 namespace Fluendo.FluendoPlatform.Core.WebApi.Controllers
 {

@@ -25,7 +25,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Fluendo.FluendoPlatform.Core.App\Fluendo.FluendoPlatform.Core.App.csproj" />
-    <ProjectReference Include="..\Fluendo.FluendoPlatform.Infrastructure.Authentication\Fluendo.FluendoPlatform.Infrastructure.Authentication.csproj" />
     <ProjectReference Include="..\Fluendo.FluendoPlatform.Infrastructure.Common\Fluendo.FluendoPlatform.Infrastructure.Common.csproj" />
   </ItemGroup>
 
