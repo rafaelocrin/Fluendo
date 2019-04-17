@@ -45,29 +45,5 @@ namespace Fluendo.FluendoPlatform.Infrastructure.Authentication.Controllers
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-
-        //private UserModel Authenticate(LoginModel login)
-        //{
-        //    UserModel user = null;
-
-        //    if (login.Username == "mario" && login.Password == "secret")
-        //    {
-        //        user = new UserModel { Name = "Mario Rossi", Email = "mario.rossi@domain.com" };
-        //    }
-        //    return user;
-        //}
-
-        //public class LoginModel
-        //{
-        //    public string Username { get; set; }
-        //    public string Password { get; set; }
-        //}
-
-        //private class UserModel
-        //{
-        //    public string Name { get; set; }
-        //    public string Email { get; set; }
-        //    public DateTime Birthdate { get; set; }
-        //}
     }
 }

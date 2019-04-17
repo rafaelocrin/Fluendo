@@ -24,12 +24,10 @@ namespace Fluendo.FluendoPlatform.Core.App.Services
             _httpUtility = httpUtility;
         }
 
-        public async Task<ActionResult<object>> GetAsync(string gamemode)
+        public async Task<ActionResult<object>> GetAsync(string accountId)
         {
             object result = null;
-            var cacheKey = _appOptions.Value.RedisCache["CacheKey_PlayerStats"];
-            var cacheTTL = _appOptions.Value.RedisCache["CacheTTL"];
-
+            var cacheKey = string.Format(_appOptions.Value.RedisCache["CacheKey_PlayerStats"], accountId);
             var playerStatsCached = await _redisCache.GetAsync(cacheKey);
 
             if (playerStatsCached != null)
@@ -38,9 +36,11 @@ namespace Fluendo.FluendoPlatform.Core.App.Services
             }
             else
             {
-                var uri = new Uri(string.Format(_appOptions.Value.Endpoints["Core_PlayerLifetime"], gamemode));
+                var uri = new Uri(string.Format(_appOptions.Value.Endpoints["Core_PlayerLifetime"], accountId));
 
                 result = await _httpUtility.GetAsync(uri);
+
+                var cacheTTL = _appOptions.Value.RedisCache["CacheTTL"];
 
                 _redisCache.SetAsync(cacheKey, result.ToString(), Convert.ToInt32(cacheTTL));
             }
