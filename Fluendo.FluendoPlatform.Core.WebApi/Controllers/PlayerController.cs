@@ -16,14 +16,10 @@ namespace Fluendo.FluendoPlatform.Core.WebApi.Controllers
     [ApiController]
     public class PlayerController : ControllerBase
     {
-        protected readonly IHttpUtility _httpUtility;
-        protected readonly IOptions<ApplicationOptions> _appOptions;
         protected readonly IPlayerStatsService _playerStatsService;
 
-        public PlayerController(IOptions<ApplicationOptions> appOptions, IHttpUtility httpUtility, IPlayerStatsService playerStatsService)
+        public PlayerController(IPlayerStatsService playerStatsService)
         {
-            _httpUtility = httpUtility;
-            _appOptions = appOptions;
             _playerStatsService = playerStatsService;
         }
 

@@ -19,14 +19,10 @@ namespace Fluendo.FluendoPlatform.Core.WebApi.Controllers
     [ApiController]
     public class LeaderboardController : ControllerBase
     {
-        protected readonly IHttpUtility _httpUtility;
-        protected readonly IOptions<ApplicationOptions> _appOptions;
         protected readonly ILeaderboardService _leaderboardService;
 
-        public LeaderboardController(IOptions<ApplicationOptions> appOptions, IHttpUtility httpUtility, ILeaderboardService leaderboardService)
+        public LeaderboardController(ILeaderboardService leaderboardService)
         {
-            _httpUtility = httpUtility;
-            _appOptions = appOptions;
             _leaderboardService = leaderboardService;
         }
 
