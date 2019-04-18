@@ -27,6 +27,7 @@ namespace Fluendo.FluendoPlatform.Core.WebApi
             var host = new WebHostBuilder()
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseUrls("http://*:5000")
                 .UseConfiguration(hostConfig)
                 .ConfigureServices(services => services.AddAutofac())
                 .UseStartup<Startup>()
