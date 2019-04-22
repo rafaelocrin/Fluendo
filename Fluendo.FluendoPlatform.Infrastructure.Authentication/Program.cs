@@ -27,6 +27,7 @@ namespace Fluendo.FluendoPlatform.Infrastructure.Authentication
             var host = new WebHostBuilder()
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseUrls("http://*:5006")
                 .UseConfiguration(hostConfig)
                 .ConfigureServices(services => services.AddAutofac())
                 .UseStartup<Startup>()

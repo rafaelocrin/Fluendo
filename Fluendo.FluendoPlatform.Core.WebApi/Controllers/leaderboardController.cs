@@ -10,6 +10,7 @@ using Fluendo.FluendoPlatform.Infrastructure.Common.Config;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using StackExchange.Redis;
@@ -22,10 +23,12 @@ namespace Fluendo.FluendoPlatform.Core.WebApi.Controllers
     public class LeaderboardController : ControllerBase
     {
         protected readonly ILeaderboardService _leaderboardService;
+        private readonly ILogger _logger;
 
-        public LeaderboardController(ILeaderboardService leaderboardService)
+        public LeaderboardController(ILeaderboardService leaderboardService, ILogger<LeaderboardController> logger)
         {
             _leaderboardService = leaderboardService;
+            _logger = logger;
         }
 
         // GET api/leaderboard/test
@@ -34,6 +37,5 @@ namespace Fluendo.FluendoPlatform.Core.WebApi.Controllers
         {
             return await _leaderboardService.GetAsync(gamemode, authorizationToken);
         }
-
     }
 }
