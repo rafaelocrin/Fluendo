@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluendo.FluendoPlatform.Sta
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluendo.FluendoPlatform.Infrastructure.Resources", "Fluendo.FluendoPlatform.Infrastructure.Resources\Fluendo.FluendoPlatform.Infrastructure.Resources.csproj", "{D783273C-B9E0-41F9-AB5E-9941FB0EBE0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluendo.FluendoPlatform.Infrastructure.Authentication", "Fluendo.FluendoPlatform.Infrastructure.Authentication\Fluendo.FluendoPlatform.Infrastructure.Authentication.csproj", "{F3E9CD1D-3B57-4DBE-BDB9-1DC9A5359673}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluendo.FluendoPlatform.Infrastructure.Authentication", "Fluendo.FluendoPlatform.Infrastructure.Authentication\Fluendo.FluendoPlatform.Infrastructure.Authentication.csproj", "{F3E9CD1D-3B57-4DBE-BDB9-1DC9A5359673}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
