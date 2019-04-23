@@ -16,7 +16,7 @@ namespace Fluendo.FluendoPlatform.Core.App.Cache
             _distributedCache = distributedCache;
         }
 
-        public async Task<Dictionary<string, object>> GetAsync(string key)
+        public async Task<object> GetAsync(string key)
         {
             var result = await _distributedCache.GetAsync(key);
 

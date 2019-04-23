@@ -20,7 +20,7 @@ namespace Fluendo.FluendoPlatform.StatsService.Persistence.Repositories
         {
             _resources = resource;
         }
-
+        
         public int Update(string playerStats)
         {
             int ret = -1;

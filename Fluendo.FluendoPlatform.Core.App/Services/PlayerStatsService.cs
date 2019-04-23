@@ -6,6 +6,7 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,28 +25,50 @@ namespace Fluendo.FluendoPlatform.Core.App.Services
             _httpUtility = httpUtility;
         }
 
-        public async Task<ActionResult<object>> GetAsync(string accountId, string authorizationToken)
+        //public async Task<ActionResult<object>> GetAsync(string accountId, string authorizationToken)
+        //{
+        //    object result = null;
+        //    var cacheKey = string.Format(_appOptions.Value.RedisCache["CacheKey_PlayerStats"], accountId);
+        //    var playerStatsCached = await _redisCache.GetAsync(cacheKey);
+
+        //    if (playerStatsCached != null)
+        //    {
+        //        result = playerStatsCached;
+        //    }
+        //    else
+        //    {
+        //        var uri = new Uri(string.Format(_appOptions.Value.Endpoints["Core_PlayerLifetime"], accountId));
+
+        //        result = await _httpUtility.GetAsync(uri, authorizationToken);
+
+        //        var cacheTTL = _appOptions.Value.RedisCache["CacheTTL"];
+
+        //        _redisCache.SetAsync(cacheKey, result.ToString(), Convert.ToInt32(cacheTTL));
+        //    }
+
+        //    return result;
+        //}
+
+        public async Task<HttpResponseMessage> GetAsync(string accountid, string authorizationToken)
         {
-            object result = null;
-            var cacheKey = string.Format(_appOptions.Value.RedisCache["CacheKey_PlayerStats"], accountId);
-            var playerStatsCached = await _redisCache.GetAsync(cacheKey);
+            var uri = new Uri(string.Format(_appOptions.Value.Endpoints["Core_PlayerLifetime"], accountid));
 
-            if (playerStatsCached != null)
-            {
-                result = playerStatsCached;
-            }
-            else
-            {
-                var uri = new Uri(string.Format(_appOptions.Value.Endpoints["Core_PlayerLifetime"], accountId));
+            return await _httpUtility.GetAsync(uri, authorizationToken);
+        }
 
-                result = await _httpUtility.GetAsync(uri, authorizationToken);
+        public async Task<object> GetCacheAsync(string accountid)
+        {
+            var cacheKey = string.Format(_appOptions.Value.RedisCache["CacheKey_PlayerStats"], accountid);
 
-                var cacheTTL = _appOptions.Value.RedisCache["CacheTTL"];
+            return await _redisCache.GetAsync(cacheKey);
+        }
 
-                _redisCache.SetAsync(cacheKey, result.ToString(), Convert.ToInt32(cacheTTL));
-            }
+        public void SetCacheAsync(string accountid, string content)
+        {
+            var cacheKey = string.Format(_appOptions.Value.RedisCache["CacheKey_PlayerStats"], accountid);
+            var cacheTTL = _appOptions.Value.RedisCache["CacheTTL"];
 
-            return result;
+            _redisCache.SetAsync(cacheKey, content, Convert.ToInt32(cacheTTL));
         }
     }
 }

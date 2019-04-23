@@ -8,7 +8,7 @@ namespace Fluendo.FluendoPlatform.Core.App.Cache
 {
     public interface IRedisCache
     {
-        Task<Dictionary<string, object>> GetAsync(string key);
+        Task<object> GetAsync(string key);
 
         void SetAsync(string key, string content, int timeToLiveInSeconds);
     }

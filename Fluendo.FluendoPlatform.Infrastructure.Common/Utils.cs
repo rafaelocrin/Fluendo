@@ -1,16 +1,17 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 
 namespace Fluendo.FluendoPlatform.Infrastructure.Common
 {
     public static class Utils
     {
-        public static Dictionary<String, Object> ParseByteToJson(byte[] json)
+        public static object ParseByteToJson(byte[] json)
         {
             string jsonStr = Encoding.UTF8.GetString(json);
-            return JsonConvert.DeserializeObject<Dictionary<String, Object>>(jsonStr);
+            return JsonConvert.DeserializeObject<object>(jsonStr);
         }
 
         public static byte[] ParseStringToBytes(string content)

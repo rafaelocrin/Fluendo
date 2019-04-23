@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -35,18 +36,35 @@ namespace Fluendo.FluendoPlatform.StatsService.WebApi.Controllers
 
         // GET api/player/{accountId}/seasons/lifetime"
         [HttpGet("{accountId}/seasons/lifetime")]
-        public async Task<ActionResult<object>> GetAsync([FromHeader(Name = "Authorization")] string authorizationToken, string accountId)
+        public async Task<ActionResult<HttpResponseMessage>> GetAsync([FromHeader(Name = "Authorization")] string authorizationToken, string accountId)
         {
+            object resultContent = null;
+
             var uri = new Uri(string.Format(_appOptions.Value.Endpoints["StatsService_PlayerLifetime"], accountId));
 
             var result = await _httpUtility.GetAsync(uri, pugbApiKey);
 
-            var processPlayerStatsRes = _playerStatsService.ProcessPlayerStats(result.ToString());
+            resultContent = JsonConvert.DeserializeObject<object>(result.Content.ReadAsStringAsync().Result);
 
-            if (processPlayerStatsRes == Enums.ResultStatus.Failed)
-                result = "Error trying to process PlayersStats Results";
+            if (!result.IsSuccessStatusCode)
+            {
+                switch (result.StatusCode)
+                {
+                    case HttpStatusCode.NoContent:
+                        return NoContent();
+                    case HttpStatusCode.NotFound:
+                        return NotFound();
+                }
+            }
+            else
+            {
+                var processPlayerStatsRes = _playerStatsService.ProcessPlayerStats(resultContent.ToString());
 
-            return result;
+                if (processPlayerStatsRes == Enums.ResultStatus.Failed)
+                    return StatusCode(Convert.ToInt32(HttpStatusCode.InternalServerError));
+            }
+
+            return Ok(resultContent);
         }
     }
 }

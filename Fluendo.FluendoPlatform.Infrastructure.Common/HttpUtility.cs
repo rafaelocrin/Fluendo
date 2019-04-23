@@ -40,9 +40,9 @@ namespace Fluendo.FluendoPlatform.Infrastructure.Common
             return resultRequest;
         }
 
-        public async Task<object> GetAsync(Uri uri, string authorizationKey)
+        public async Task<HttpResponseMessage> GetAsync(Uri uri, string authorizationKey)
         {
-            object resultRequest;
+            HttpResponseMessage resultRequest;
 
             try
             {
@@ -118,16 +118,11 @@ namespace Fluendo.FluendoPlatform.Infrastructure.Common
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.api+json"));
         }
 
-        private async Task<object> InvokeGetRequest(HttpClient httClient, Uri uri)
+        private async Task<HttpResponseMessage> InvokeGetRequest(HttpClient httClient, Uri uri)
         {
-            using (var result = await httClient.GetAsync(uri))
-            {
-                
-                if (!result.IsSuccessStatusCode)
-                    throw new HttpRequestException($"Error in request to {uri} : {result.StatusCode}");
+            var result = await httClient.GetAsync(uri);
 
-                return JsonConvert.DeserializeObject<object>(result.Content.ReadAsStringAsync().Result);
-            }
+            return result;
         }
 
         private async Task<object> InvokePostRequest(HttpClient httClient, Uri uri, HttpContent content)

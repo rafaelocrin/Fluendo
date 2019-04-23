@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,10 +33,45 @@ namespace Fluendo.FluendoPlatform.Core.WebApi.Controllers
         }
 
         // GET api/leaderboard/test
-        [HttpGet("{gamemode}")]
-        public async Task<ActionResult<object>> GetAsync([FromHeader(Name = "Authorization")] string authorizationToken, string gamemode)
+        [HttpGet("{gameMode}")]
+        public async Task<ActionResult<HttpResponseMessage>> GetAsync([FromHeader(Name = "Authorization")] string authorizationToken, string gameMode)
         {
-            return await _leaderboardService.GetAsync(gamemode, authorizationToken);
+            object resultContent = null;
+
+            var leaderboardCached = await _leaderboardService.GetCacheAsync(gameMode);
+
+            if (leaderboardCached != null)
+            {
+                resultContent = leaderboardCached;
+            }
+            else
+            {
+                var result = await  _leaderboardService.GetAsync(gameMode, authorizationToken);
+
+                resultContent = JsonConvert.DeserializeObject<object>(result.Content.ReadAsStringAsync().Result);
+
+                if (result.IsSuccessStatusCode)
+                {
+                    _leaderboardService.SetCacheAsync(gameMode, resultContent.ToString());
+                }
+
+                if (!result.IsSuccessStatusCode)
+                {
+                    switch (result.StatusCode)
+                    {
+                        case HttpStatusCode.NoContent:
+                            return NoContent();
+                        case HttpStatusCode.NotFound:
+                            return NotFound();
+                    }
+                }
+                else
+                {
+                    _leaderboardService.SetCacheAsync(gameMode, resultContent.ToString());
+                }
+            }
+
+            return Ok(resultContent);
         }
     }
 }

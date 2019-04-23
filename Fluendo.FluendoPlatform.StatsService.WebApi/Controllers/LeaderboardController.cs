@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -34,18 +35,35 @@ namespace Fluendo.FluendoPlatform.StatsService.WebApi.Controllers
 
         // GET api/leaderboard/test
         [HttpGet("{gamemode}")]
-        public async Task<ActionResult<object>> GetAsync([FromHeader(Name = "Authorization")] string authorizationToken, string gamemode)
+        public async Task<ActionResult<HttpResponseMessage>> GetAsync([FromHeader(Name = "Authorization")] string authorizationToken, string gamemode)
         {
+            object resultContent = null;
+
             var uri = new Uri(string.Format(_appOptions.Value.Endpoints["StatsService_Leaderboard"], gamemode));
 
             var result = await _httpUtility.GetAsync(uri, pugbApiKey);
 
-            var processLeaderboardRes = _leaderboardService.ProcessLeaderboard(result.ToString());
+            resultContent = JsonConvert.DeserializeObject<object>(result.Content.ReadAsStringAsync().Result);
 
-            if (processLeaderboardRes == Enums.ResultStatus.Failed)
-                result = "Error trying to process Leaderboard Results";
+            if (!result.IsSuccessStatusCode)
+            {
+                switch (result.StatusCode)
+                {
+                    case HttpStatusCode.NoContent:
+                        return NoContent();
+                    case HttpStatusCode.NotFound:
+                        return NotFound();
+                }
+            }
+            else
+            {
+                var processLeaderboardRes = _leaderboardService.ProcessLeaderboard(resultContent.ToString());
 
-            return result;
+                if (processLeaderboardRes == Enums.ResultStatus.Failed)
+                    return StatusCode(Convert.ToInt32(HttpStatusCode.InternalServerError));
+            }
+
+            return Ok(resultContent);
         }
     }
 }
