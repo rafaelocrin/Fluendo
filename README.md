@@ -20,7 +20,7 @@ Download and Launch the application
          docker pull mongo
          docker run -p 127.0.0.1:27017:27017 --name fluendo_mongo -d mongo
 
-Redis
+<b>Redis</b>
 - From Docker for windows or accessing the Redis web page, pull and run Redis
     web page tutorial for install by Docker for Windows: https://koukia.ca/installing-redis-on-windows-using-docker-containers-7737d2ebc25e
     web page: https://github.com/MicrosoftArchive/redis/releases
@@ -28,7 +28,7 @@ Redis
            docker pull redis
            docker run --name redis -d redis
  
-Fluendo Platform 
+<b>Fluendo Platform</b> 
 - Download and extract the Fluendo Application from this repository
    https://github.com/rafaelocrin/Fluendo 
 
@@ -40,21 +40,21 @@ Fluendo Platform
 
 - Access API's 
 
-Fluendo Infrastructure Authentication
-http://localhost:50541/swagger/index.html
+  Fluendo Infrastructure Authentication
+  http://localhost:50541/swagger/index.html
      - /api/token (token generator)
 
-Fluendo Core Web Api
-http://localhost:50708/swagger/index.html
+  Fluendo Core Web Api
+  http://localhost:50708/swagger/index.html
      - /api/Leaderboard/{ gameMode } (Get 100 Top players by game mode)
      - /api/Player/{ accountId }/seassons/lifetime (Get player statistics by account id)
 
-Fluendo Stats Updater Service
-http://localhost:51433/swagger/index.html
-    - /api/Leaderboard/{ gameMode } (Get 100 Top players by game mode)
+  Fluendo Stats Updater Service
+  http://localhost:51433/swagger/index.html
+     - /api/Leaderboard/{ gameMode } (Get 100 Top players by game mode)
      - /api/Player/{ accountId }/seassons/lifetime (Get player statistics by account id)
 
-Final comments:
+<b>Final comments:</b>
 
 Asp.Net Core Backend - done
 
