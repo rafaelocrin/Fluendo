@@ -1,5 +1,5 @@
 # Fluendo
-Fluendo App
+<b>Fluendo App</b>
 
 This application is a sample Fluendo project to interact with PUGB API to obtain the top 100 players given game mode and  the players statistics given an account id.
 
