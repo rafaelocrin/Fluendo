@@ -65,7 +65,7 @@ Redis Cache - done
 Non Relational Database - done
 Swagger - done
 Github - done
----------------------------------------
+
 Unit Tests - pending
 Docker containers / docker compose - pending
 Rate limiting - pending
