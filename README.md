@@ -13,7 +13,7 @@ It's a .Net Core Application consisting of the following components with respect
 
 Download and Launch the application
 
-MongoDB
+<b>MongoDB</b>
 - Acces MongoDB web page to Pull and run MongoDB Docker
     web page: https://hub.docker.com/_/mongo
     docker commands:
