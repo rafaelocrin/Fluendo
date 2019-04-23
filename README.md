@@ -11,7 +11,6 @@ It's a .Net Core Application consisting of the following components with respect
 
 - Fluendo Stats Updater Service - Responsible to call PUGB API to to get Leaderboard top players and players statistics, then store those requests into Non relational Database.  
 
-
 Download and Launch the application
 
 MongoDB
@@ -55,7 +54,6 @@ http://localhost:51433/swagger/index.html
     - /api/Leaderboard/{ gameMode } (Get 100 Top players by game mode)
      - /api/Player/{ accountId }/seassons/lifetime (Get player statistics by account id)
 
-
 Final comments:
 
 Asp.Net Core Backend - done
@@ -65,8 +63,3 @@ Redis Cache - done
 Non Relational Database - done
 Swagger - done
 Github - done
-
-Unit Tests - pending
-Docker containers / docker compose - pending
-Rate limiting - pending
-
