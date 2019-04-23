@@ -57,9 +57,23 @@ http://localhost:51433/swagger/index.html
 Final comments:
 
 Asp.Net Core Backend - done
+
 Leaderboard Stats Updater Service - done
+
 Token Authentication - done
+
 Redis Cache - done
+
 Non Relational Database - done
+
 Swagger - done
+
 Github - done
+
+
+Unit Tests - pending
+
+Docker containers / docker compose - pending
+
+Rate limiting - pending
+
