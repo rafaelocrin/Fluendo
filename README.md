@@ -16,7 +16,7 @@ Download and Launch the application
 <b>MongoDB</b>
 - Acces MongoDB web page to Pull and run MongoDB Docker
     web page: https://hub.docker.com/_/mongo
-    docker commands:
+    - docker commands:
          docker pull mongo
          docker run -p 127.0.0.1:27017:27017 --name fluendo_mongo -d mongo
 
@@ -24,7 +24,7 @@ Download and Launch the application
 - From Docker for windows or accessing the Redis web page, pull and run Redis
     web page tutorial for install by Docker for Windows: https://koukia.ca/installing-redis-on-windows-using-docker-containers-7737d2ebc25e
     web page: https://github.com/MicrosoftArchive/redis/releases
-    docker commands:
+    - docker commands:
            docker pull redis
            docker run --name redis -d redis
  
