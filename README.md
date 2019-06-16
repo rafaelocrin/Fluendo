@@ -3,7 +3,7 @@
 
 This application is a sample Fluendo project to interact with PUGB API to obtain the top 100 players given game mode and  the players statistics given an account id.
 
-Firt of all, read the requirements situated in PUBG Stats Backend.docx document
+Firt of all, read the requirements situated in this document https://github.com/rafaelocrin/Fluendo/blob/master/PUBG%20Stats%20Backend.docx
 
 It's a .Net Core Application consisting of the following components with respectives end points:
 
