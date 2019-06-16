@@ -72,8 +72,8 @@ Github - done
 
 --------------------------------------
 
-Unit Tests - pending
-   Fluendo.FluendoPlatform.Infrastructure.Authetication.Test/AuthenticationTest.cs (done)
+Unit Tests
+   - Fluendo.FluendoPlatform.Infrastructure.Authetication.Test/AuthenticationTest.cs (done)
 
 Docker containers / docker compose - pending
 
