@@ -983,3 +983,8 @@ System.Exception: Error when trying to update into Leaderboard collection
 2019-04-23T15:20:20.5708100+02:00 0HLM7TP9QJOQJ:00000003 [INF] Executing ObjectResult, writing value of type '"Newtonsoft.Json.Linq.JObject"'. (8a1b66c8)
 2019-04-23T15:20:20.5891135+02:00 0HLM7TP9QJOQJ:00000003 [INF] Executed action "Fluendo.FluendoPlatform.StatsService.WebApi.Controllers.PlayerController.GetAsync (Fluendo.FluendoPlatform.StatsService.WebApi)" in 14295.7563ms (afa2e885)
 2019-04-23T15:20:20.6056778+02:00 0HLM7TP9QJOQJ:00000003 [INF] Request finished in 14405.2362ms 200 application/json; charset=utf-8 (791a596a)
+2019-04-23T16:47:10.9355100+02:00 0HLM7VA8GILVP:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:51433/swagger/favicon-32x32.png   (ca22a1cb)
+2019-04-23T16:47:10.9792387+02:00 0HLM7VA8GILVP:00000001 [WRN] "AcceptLanguageHeaderRequestCultureProvider" returned the following unsupported cultures '["en-GB"]'. (70503d1b)
+2019-04-23T16:47:10.9793902+02:00 0HLM7VA8GILVP:00000001 [WRN] "AcceptLanguageHeaderRequestCultureProvider" returned the following unsupported UI Cultures '["en-GB"]'. (31a7522c)
+2019-04-23T16:47:11.1745947+02:00 0HLM7VA8GILVP:00000001 [INF] Sending file. Request path: '"/favicon-32x32.png"'. Physical path: '"N/A"' (27b0a520)
+2019-04-23T16:47:11.1792166+02:00 0HLM7VA8GILVP:00000001 [INF] Request finished in 251.0169ms 200 image/png (791a596a)

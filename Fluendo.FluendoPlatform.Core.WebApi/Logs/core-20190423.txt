@@ -821,3 +821,6 @@ System.Net.Http.HttpRequestException: Error in request to http://localhost:51433
 2019-04-23T15:20:20.7293112+02:00 0HLM7TP9KS82S:00000003 [INF] Executing ObjectResult, writing value of type '"Newtonsoft.Json.Linq.JObject"'. (8a1b66c8)
 2019-04-23T15:20:20.7434388+02:00 0HLM7TP9KS82S:00000003 [INF] Executed action "Fluendo.FluendoPlatform.Core.WebApi.Controllers.PlayerController.GetAsync (Fluendo.FluendoPlatform.Core.WebApi)" in 15351.302ms (afa2e885)
 2019-04-23T15:20:20.7514294+02:00 0HLM7TP9KS82S:00000003 [INF] Request finished in 15485.7148ms 200 application/json; charset=utf-8 (791a596a)
+2019-04-23T16:47:06.3263989+02:00 0HLM7VA74CC0O:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:50708/swagger/favicon-32x32.png   (ca22a1cb)
+2019-04-23T16:47:06.6764745+02:00 0HLM7VA74CC0O:00000001 [INF] Sending file. Request path: '"/favicon-32x32.png"'. Physical path: '"N/A"' (27b0a520)
+2019-04-23T16:47:06.6813666+02:00 0HLM7VA74CC0O:00000001 [INF] Request finished in 364.0991ms 200 image/png (791a596a)

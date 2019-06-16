@@ -17,12 +17,13 @@ namespace Fluendo.FluendoPlatform.Infrastructure.Authentication.Controllers
     public class TokenController : Controller
     {
         private IConfiguration _config;
-        protected readonly IOptions<ApplicationOptions> _appOptions;
+        private const string JwtKey = "Jwt:Key";
+        private const string JwtIssuer = "Jwt:Issuer";
+        private const string JwtExpiration = "Jwt:Expiration";
 
-        public TokenController(IConfiguration config, IOptions<ApplicationOptions> appOption)
+        public TokenController(IConfiguration config)
         {
             _config = config;
-            _appOptions = appOption;
         }
 
         [AllowAnonymous]
@@ -39,14 +40,12 @@ namespace Fluendo.FluendoPlatform.Infrastructure.Authentication.Controllers
 
         private string BuildToken()
         {
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config[JwtKey]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-            var token = new JwtSecurityToken(_config["Jwt:Issuer"],
-              _config["Jwt:Issuer"],
-              //expires: DateTime.Now.AddSeconds(Convert.ToDouble(_config["Jwt:Expiration"])),
-            expires: DateTime.Now.AddSeconds(Convert.ToInt32(_config["Jwt:Expiration"])),
-              signingCredentials: creds);
+            var token = new JwtSecurityToken(_config[JwtIssuer], _config[JwtIssuer], 
+                        expires: DateTime.Now.AddSeconds(Convert.ToInt32(_config[JwtExpiration])),
+                        signingCredentials: creds);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }

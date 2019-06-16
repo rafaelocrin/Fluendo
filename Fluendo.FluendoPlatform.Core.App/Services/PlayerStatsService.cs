@@ -25,30 +25,6 @@ namespace Fluendo.FluendoPlatform.Core.App.Services
             _httpUtility = httpUtility;
         }
 
-        //public async Task<ActionResult<object>> GetAsync(string accountId, string authorizationToken)
-        //{
-        //    object result = null;
-        //    var cacheKey = string.Format(_appOptions.Value.RedisCache["CacheKey_PlayerStats"], accountId);
-        //    var playerStatsCached = await _redisCache.GetAsync(cacheKey);
-
-        //    if (playerStatsCached != null)
-        //    {
-        //        result = playerStatsCached;
-        //    }
-        //    else
-        //    {
-        //        var uri = new Uri(string.Format(_appOptions.Value.Endpoints["Core_PlayerLifetime"], accountId));
-
-        //        result = await _httpUtility.GetAsync(uri, authorizationToken);
-
-        //        var cacheTTL = _appOptions.Value.RedisCache["CacheTTL"];
-
-        //        _redisCache.SetAsync(cacheKey, result.ToString(), Convert.ToInt32(cacheTTL));
-        //    }
-
-        //    return result;
-        //}
-
         public async Task<HttpResponseMessage> GetAsync(string accountid, string authorizationToken)
         {
             var uri = new Uri(string.Format(_appOptions.Value.Endpoints["Core_PlayerLifetime"], accountid));
