@@ -49,12 +49,16 @@ Download and Launch the application
   Fluendo Core Web Api
   http://localhost:50708/swagger/index.html
      - /api/Leaderboard/{ gameMode } (Get 100 Top players by game mode)
+        - Ej.: /api/Leaderboard/duo
      - /api/Player/{ accountId }/seassons/lifetime (Get player statistics by account id)
+        - Ej.: /api/Player/account.d50fdc18fcad49c691d38466bed6f8fd/seassons/lifetime
 
   Fluendo Stats Updater Service
   http://localhost:51433/swagger/index.html
      - /api/Leaderboard/{ gameMode } (Get 100 Top players by game mode)
+        - Ej.: /api/Leaderboard/duo
      - /api/Player/{ accountId }/seassons/lifetime (Get player statistics by account id)
+        - Ej.: /api/Player/account.d50fdc18fcad49c691d38466bed6f8fd/seassons/lifetime
 
 <b>Final comments:</b>
 
